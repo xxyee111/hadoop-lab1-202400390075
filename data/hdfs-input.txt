@@ -1,0 +1,3 @@
+Hadoop stores large files across a distributed file system.
+The Java API and shell commands operate on the same HDFS namespace.
+
