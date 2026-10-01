@@ -9,6 +9,8 @@
 - `src/main/java/edu/sdu/bigdata/mapreduce/SortIntegers.java`：对多文件整数进行全局升序排序并生成位次。
 - `src/main/java/edu/sdu/bigdata/mapreduce/GrandRelation.java`：根据 child-parent 关系计算 grandchild-grandparent 关系。
 - `data/`：三项 MapReduce 任务和 HDFS API 演示使用的输入数据。
+- `scripts/linux-commands-ubuntu.sh`：在 Ubuntu 环境中执行实验要求的 17 组 Linux 命令。
+- `.github/workflows/linux-command-verification.yml`：使用 GitHub Actions 的 Ubuntu 24.04 运行器保留 Linux 命令执行记录。
 
 ## 编译与运行
 
@@ -36,4 +38,3 @@ hadoop jar target/hadoop-lab1.jar edu.sdu.bigdata.mapreduce.GrandRelation /lab1/
 ```
 
 实验报告中的运行结果来自公开仓库对应代码的实际执行记录。
-

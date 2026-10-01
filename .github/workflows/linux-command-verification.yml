@@ -1,0 +1,21 @@
+name: Ubuntu Linux command verification
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/linux-commands-ubuntu.sh
+      - .github/workflows/linux-command-verification.yml
+
+jobs:
+  verify-linux-commands:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out experiment code
+        uses: actions/checkout@v4
+
+      - name: Execute all 17 command groups on Ubuntu
+        shell: bash
+        run: |
+          chmod +x scripts/linux-commands-ubuntu.sh
+          sudo -H bash scripts/linux-commands-ubuntu.sh
