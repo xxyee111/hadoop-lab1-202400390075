@@ -7,6 +7,9 @@ on:
       - scripts/linux-commands-ubuntu.sh
       - .github/workflows/linux-command-verification.yml
 
+permissions:
+  contents: write
+
 jobs:
   verify-linux-commands:
     runs-on: ubuntu-24.04
@@ -18,4 +21,17 @@ jobs:
         shell: bash
         run: |
           chmod +x scripts/linux-commands-ubuntu.sh
-          sudo -H bash scripts/linux-commands-ubuntu.sh
+          sudo -H bash scripts/linux-commands-ubuntu.sh 2>&1 | tee linux-commands-ubuntu.log
+          test ${PIPESTATUS[0]} -eq 0
+
+      - name: Publish the Ubuntu execution record
+        shell: bash
+        run: |
+          mkdir -p evidence
+          cp linux-commands-ubuntu.log evidence/linux-commands-ubuntu.log
+          git config user.name "xxyee111"
+          git config user.email "1372988366@qq.com"
+          git add evidence/linux-commands-ubuntu.log
+          git diff --cached --quiet && exit 0
+          git commit -m "Record Ubuntu Linux command execution"
+          git push
